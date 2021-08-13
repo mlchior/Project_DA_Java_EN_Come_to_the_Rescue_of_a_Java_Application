@@ -1,7 +1,7 @@
 package com.hemebiotech.analytics;
-/**
- * @author melchior crinier
- */
+	/**
+* @author melchior crinier
+		*/
 
 
 import java.io.BufferedReader;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.Map;
 
-public class AnalyticsCounter {
+public class AnalyticsCounterBrouillon{
 	private static int headacheCount = 0;
 	private static int rashCount = 0;
 	private static int pupilCount = 0;
@@ -43,7 +43,7 @@ public class AnalyticsCounter {
 		}
 
 		// si mon symptoms est deja present dans la liste
-		//if mySymptoms.containsKey(line)
+			//if mySymptoms.containsKey(line)
 
 
 
