@@ -7,40 +7,48 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.HashMap;
-import java.util.TreeMap;
 import java.util.Map;
+import java.io.IOException;
 
 public class AnalyticsCounter {
 
-	public static void main(String args[]) throws Exception {
+	public static void main(String args[]) throws IOException {
 
-		BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
-		String line = reader.readLine();
+		try {
+			BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
+			String line = reader.readLine();
 
-		Map<String, Integer> mySymptoms = new HashMap<String, Integer>();
+			Map<String, Integer> mySymptoms = new HashMap<String, Integer>();
+
+			while (line != null) {
+				line = reader.readLine();
+
+				if (mySymptoms.containsKey(line)){
+						int add=mySymptoms.get(line);
+						add++;
+						mySymptoms.put(line, add);
+					} else  {
+						mySymptoms.put(line,1);
+					}
+
+				}
+				reader.close();
+
+				for (String k : mySymptoms.keySet()){
+					System.out.println(k);
+					System.out.println(mySymptoms.get(k));
+				}
 
 
-		while (line != null ) {
-
-			if (mySymptoms.containsKey(line)){
-				int add=mySymptoms.get(line);
-				add++;
-				mySymptoms.put(line, add);
-			} else  {
-				mySymptoms.put(line,1);
-			}
-			line = reader.readLine();
-
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		for (String k : mySymptoms.keySet()){
-			System.out.println(k);
-			System.out.println(mySymptoms.get(k));
-		}
-
-
-
-		FileWriter writer = new FileWriter("Project02Eclipse/src/result.out");
-
-		writer.close();
 	}
-}
+
+
+
+
+	/**	FileWriter writer = new FileWriter("Project02Eclipse/src/result.out");
+
+		writer.close();*/
+	}
