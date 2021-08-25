@@ -10,6 +10,9 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.IOException;
+import java.io.Writer;
+import java.io.File;
+import static java.lang.System.out;
 
 public class AnalyticsCounter {
 	Map<String, Integer> mySymptoms;
@@ -37,27 +40,35 @@ public class AnalyticsCounter {
 			}
 			reader.close();
 
+			for (String clé : mySymptoms.keySet()) {
+				if (clé != null){
+				System.out.println(clé);
+				System.out.println(mySymptoms.get(clé));
+			}}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		BufferedWriter writer = null;
 
 		try {
-			writer = new BufferedWriter(new FileWriter("Project02Eclipse/src/result.out"));
+			File fichier = new File("result.out");
+			//writer = new BufferedWriter(new FileWriter(fichier));
+
+			FileWriter filewriter = new FileWriter(fichier, true);
+			BufferedWriter out = new BufferedWriter(filewriter);
 			//ouvrir le writer.open
 			//remettre en filewriter
 			// treemap
 			// une function pour lire une function pour trier une function pour ecrire les symptomes
 			// get.symptoms de l'objet read date from file
-			for (String k : mySymptoms.keySet()) {
-				writer.write(k + ":" + mySymptoms.get(k) + "/n");
-				writer.newLine();
-				writer.flush();
-				writer.close();
-			}
+			for (String clé : mySymptoms.keySet())if (clé != null){ {
+				out.write(clé + ":" + mySymptoms.get(clé));
+				out.newLine();
+				out.flush();
+			}}
+			out.close();
 			} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace();.
 		}
 
 
