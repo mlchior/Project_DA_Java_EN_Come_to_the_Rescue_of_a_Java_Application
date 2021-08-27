@@ -7,4 +7,5 @@ public class Main {
         AnalyticsCounter lunch = new AnalyticsCounter();
         lunch.run();
     }
+
 }
