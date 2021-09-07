@@ -9,3 +9,5 @@ public class Main {
     }
 
 }
+
+// creer une class specifique pour ecrie le fichier creer writeSymptoms.java
