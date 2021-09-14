@@ -38,6 +38,7 @@ public class AnalyticsCounter {
 			}
 		}
 		return symptoms;
+
 	}
 
 	public void run() {
@@ -91,6 +92,8 @@ public class AnalyticsCounter {
 		}*/
 
 		try {
+/*public void writer (){*/
+
 			File fichier = new File("result.out");
 			//writer = new BufferedWriter(new FileWriter(fishier));
 

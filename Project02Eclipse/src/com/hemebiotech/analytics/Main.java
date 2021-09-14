@@ -6,6 +6,7 @@ public class Main {
     public static void main(String[] args) {
         AnalyticsCounter lunch = new AnalyticsCounter();
         lunch.run();
+        System.out.println("---lancement de run---");
     }
 
 }
