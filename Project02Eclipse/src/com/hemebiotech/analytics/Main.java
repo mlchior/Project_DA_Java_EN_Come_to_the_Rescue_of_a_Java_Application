@@ -1,9 +1,18 @@
 package com.hemebiotech.analytics;
 
+/**
+ *
+ */
 
 
 public class Main {
+    /**
+     *
+     *
+     * @param args
+     */
     public static void main(String[] args) {
+
         AnalyticsCounter lunch = new AnalyticsCounter();
         System.out.println("---lancement de run---");
         lunch.run();
@@ -12,4 +21,3 @@ public class Main {
 
 }
 
-// creer une class specifique pour ecrie le fichier creer writeSymptoms.java

@@ -4,10 +4,12 @@ package com.hemebiotech.analytics;
  */
 
 
-import  java.util.List;
 import java.util.HashMap;
+import  java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+
 
 
 public class AnalyticsCounter {
@@ -17,7 +19,23 @@ public class AnalyticsCounter {
 	public AnalyticsCounter() {
 	mySymptoms = new HashMap<String, Integer>();
 }
+	public void run() {
 
+		ISymptomReader readSymptom= new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+
+		List<String> result = readSymptom.GetSymptoms();
+
+//HashMap
+		mySymptoms = countSymptoms(result);
+//Treemap
+		mySymptoms = SortSymptoms(mySymptoms);
+
+		ISymptomsWriter filepath = new WriteSymptomsFileFromData("result.out");
+		filepath.writeSymptoms(mySymptoms);
+
+
+
+	}
 	public Map<String, Integer> countSymptoms(List<String> result){
 		Map <String, Integer> symptoms = new HashMap<String, Integer>();
 		for (String Element: result) {
@@ -33,24 +51,14 @@ public class AnalyticsCounter {
 
 	}
 
-	public void run() {
-		ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+	public TreeMap<String, Integer> SortSymptoms( Map<String, Integer> mapEntry ){
 
-		List<String> result = readSymptomDataFromFile.GetSymptoms();
+	return mapEntry.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,
+																Map.Entry::getValue,
+																(oldValue, newValue)
+																-> newValue,TreeMap::new));
 
-//mySymptoms liste des symptoms avec le count
-		mySymptoms = countSymptoms(result);
+	}
 
-
-/*appeler rla function qui rnevoi une treemap
-
-
-*  */
-		WriteSymptoms fichier = new WriteSymptoms("result.out");
-		fichier.blueSymptoms(mySymptoms);
-
-
-
-			}
 
 	}

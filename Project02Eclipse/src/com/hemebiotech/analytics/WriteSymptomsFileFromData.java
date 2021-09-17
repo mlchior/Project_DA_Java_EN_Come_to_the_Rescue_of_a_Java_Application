@@ -4,17 +4,16 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
-public class WriteSymptoms {
-  private String filepath;
-    // s = result.out
-        public WriteSymptoms(String filepath) {
-            this.filepath = filepath ;
 
-        }
-        public void blueSymptoms(Map<String, Integer> mySymptoms) {
+public class WriteSymptomsFileFromData implements ISymptomsWriter {
+  private String filepath;
+
+        public WriteSymptomsFileFromData(String filepath) {this.filepath = filepath; }
+
+        @Override
+        public void writeSymptoms(Map<String, Integer> mySymptoms) {
             try {
 
                 File file = new File(filepath);
@@ -23,9 +22,9 @@ public class WriteSymptoms {
                 BufferedWriter out = new BufferedWriter(filewriter);
 
 
-                for (String clé : mySymptoms.keySet()){
-                    if (clé != null){
-                        out.write(clé + ":" + mySymptoms.get(clé));
+                for (String key : mySymptoms.keySet()){
+                    if (key != null){
+                        out.write(key + ":" + mySymptoms.get(key));
                         out.newLine();
                         out.flush();
                     }}
