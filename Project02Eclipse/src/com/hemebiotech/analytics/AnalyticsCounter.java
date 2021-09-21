@@ -1,6 +1,8 @@
 package com.hemebiotech.analytics;
 /**
  * @author melchior crinier
+ *
+ *
  */
 
 
@@ -11,7 +13,9 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 
-
+/**
+ *
+ */
 public class AnalyticsCounter {
 	private String filepath;
 	Map<String, Integer> mySymptoms;
