@@ -1,18 +1,21 @@
 package com.hemebiotech.analytics;
 /**
  * @author melchior crinier
+ *
+ *
  */
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import  java.util.List;
 import java.util.HashMap;
+import  java.util.List;
 import java.util.Map;
-import java.io.IOException;
-import java.io.File;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 
+/**
+ *
+ */
 public class AnalyticsCounter {
 	private String filepath;
 	Map<String, Integer> mySymptoms;
@@ -20,7 +23,23 @@ public class AnalyticsCounter {
 	public AnalyticsCounter() {
 		mySymptoms = new HashMap<String, Integer>();
 	}
+	public void run() {
 
+		ISymptomReader readSymptom= new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+
+		List<String> result = readSymptom.GetSymptoms();
+
+//HashMap
+		mySymptoms = countSymptoms(result);
+//Treemap
+		mySymptoms = SortSymptoms(mySymptoms);
+
+		ISymptomsWriter filepath = new WriteSymptomsFileFromData("result.out");
+		filepath.writeSymptoms(mySymptoms);
+
+
+
+	}
 	public Map<String, Integer> countSymptoms(List<String> result){
 		Map <String, Integer> symptoms = new HashMap<String, Integer>();
 		for (String Element: result) {
@@ -33,37 +52,17 @@ public class AnalyticsCounter {
 			}
 		}
 		return symptoms;
-	}
-
-	public void run() {
-		ReadSymptoms readSymptomDataFromFile = new ReadSymptoms("Project02Eclipse/symptoms.txt");
-
-		List<String> result = readSymptomDataFromFile.GetSymptoms();
-
-
-		mySymptoms = countSymptoms(result);
-
-
-
-		try {
-			File fichier = new File("result.out");
-			//writer = new BufferedWriter(new FileWriter(fishier));
-
-			FileWriter filewriter = new FileWriter(fichier, false);
-			BufferedWriter out = new BufferedWriter(filewriter);
-
-			for (String clé : mySymptoms.keySet()){
-				if (clé != null){
-					out.write(clé + ":" + mySymptoms.get(clé));
-					out.newLine();
-					out.flush();
-				}}
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 
 	}
+
+	public TreeMap<String, Integer> SortSymptoms( Map<String, Integer> mapEntry ){
+
+		return mapEntry.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey,
+				Map.Entry::getValue,
+				(oldValue, newValue)
+						-> newValue,TreeMap::new));
+
+	}
+
 
 }

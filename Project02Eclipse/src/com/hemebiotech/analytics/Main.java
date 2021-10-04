@@ -1,10 +1,21 @@
 package com.hemebiotech.analytics;
 
+/**
+ *
+ */
 
 
 public class Main {
+    /**
+     *
+     *
+     * @param args
+     */
     public static void main(String[] args) {
+
         AnalyticsCounter lunch = new AnalyticsCounter();
         lunch.run();
+
     }
+
 }
