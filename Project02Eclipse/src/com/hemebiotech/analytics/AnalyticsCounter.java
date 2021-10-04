@@ -36,7 +36,7 @@ public class AnalyticsCounter {
 	}
 
 	public void run() {
-		ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		ReadSymptoms readSymptomDataFromFile = new ReadSymptoms("Project02Eclipse/symptoms.txt");
 
 		List<String> result = readSymptomDataFromFile.GetSymptoms();
 
